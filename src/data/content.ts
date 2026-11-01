@@ -3,11 +3,13 @@
 // Address: 9259 E Raintree Dr ste 2019, Scottsdale, AZ 85260
 // Phone: (602) 935-6539
 // Portals: Owners (Propertyware), Tenants (ClickPay)
+// Verified Team: Trevor Reeves (Partner & Controller), Braxton Heise (Partner & Maintenance Manager), Sarah Walden (Office Manager), Zoe Amos (Property Manager)
+// Verified Genuine Testimonials: Tammy & Jim Hull, Randall Trimm, Jane Gottfried
 
 export const COMPANY_INFO = {
   name: "Scottsdale Property Management",
   shortName: "SPM",
-  tagline: "Thoughtful Rental & Vacation Home Management",
+  tagline: "Property ownership. Managed with intention.",
   phone: "(602) 935-6539",
   phoneRaw: "6029356539",
   address: "9259 E Raintree Dr ste 2019, Scottsdale, AZ 85260",
@@ -17,161 +19,183 @@ export const COMPANY_INFO = {
   serviceAreas: [
     "North Scottsdale",
     "Old Town Scottsdale",
+    "Paradise Valley",
     "DC Ranch",
     "Gainey Ranch",
-    "Paradise Valley",
     "McCormick Ranch",
     "Troon North"
   ]
 };
 
-export interface ServiceItem {
-  id: string;
-  title: string;
-  category: "residential" | "str" | "multifamily" | "maintenance";
-  subtitle: string;
-  description: string;
+export interface TeamMember {
+  name: string;
+  role: string;
+  focus: string;
+  bio: string;
   image: string;
-  highlights: string[];
-  features: string[];
 }
 
-export const SERVICES_DATA: ServiceItem[] = [
+export const VERIFIED_TEAM: TeamMember[] = [
   {
-    id: "residential-single-family",
-    title: "Residential & Single-Family",
-    category: "residential",
-    subtitle: "Long-term lease management with reliable, vetted tenants.",
-    description: "End-to-end stewardship for your single-family rental home. We handle comprehensive marketing, rigorous tenant screening, prompt rent disbursement, routine preventive inspections, and frictionless tenant relations.",
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
-    highlights: ["Rigorous 6-point tenant screening", "Direct deposit rent disbursements", "Routine documented inspections"],
-    features: [
-      "Targeted digital advertising & MLS marketing",
-      "Drafting & executing Arizona-compliant leases",
-      "Dedicated account manager for owners",
-      "Strict zero-tolerance rent enforcement",
-      "Regular move-in/move-out photo documentation"
+    name: "Trevor Reeves",
+    role: "Partner & Controller",
+    focus: "Financial Operations & Portfolio Strategy",
+    bio: "As partner and controller, Trevor oversees asset accounting, accurate P&L distributions, and strategic financial transparency for property owners across Maricopa County.",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    name: "Braxton Heise",
+    role: "Partner & Maintenance Manager",
+    focus: "Field Operations, Trades & Desert Systems",
+    bio: "Braxton directs field operations, irrigation infrastructure, HVAC preventive schedules, contractor quality control, and rapid response maintenance teams.",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    name: "Sarah Walden",
+    role: "Office Manager",
+    focus: "Owner Communications & Administration",
+    bio: "Sarah manages day-to-day operations, tenant onboarding coordination, portal support, and ensures seamless, responsive communication between owners and SPM.",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    name: "Zoe Amos",
+    role: "Property Manager",
+    focus: "Leasing, Tenant Screening & Compliance",
+    bio: "Zoe leads tenant screening, Arizona lease compliance, property audits, move-in/move-out inspections, and hands-on resident relationship management.",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80"
+  }
+];
+
+export interface VerifiedTestimonial {
+  quote: string;
+  author: string;
+  context: string;
+  propertyType: string;
+}
+
+export const VERIFIED_TESTIMONIALS: VerifiedTestimonial[] = [
+  {
+    quote: "I finally bit the bullet and hired a company for my three rent houses and I'm so glad I did. A simple automated statement each month and THATS IT!",
+    author: "Randall Trimm",
+    context: "Long-term residential rental portfolio owner",
+    propertyType: "Single-Family Rentals"
+  },
+  {
+    quote: "Trevor has been incredible to work with over the last year, huge upgrade from our last company.",
+    author: "Tammy & Jim Hull",
+    context: "Property owners in Scottsdale",
+    propertyType: "Residential Management"
+  },
+  {
+    quote: "I wanted a premium STR service for my properties and SPM has helped a ton catering to bachelor and bachelorette groups while keeping the place in great shape!",
+    author: "Jane Gottfried",
+    context: "Short-term rental & vacation property investor",
+    propertyType: "Vacation Rental (Airbnb & Vrbo)"
+  }
+];
+
+export interface ManagementTrack {
+  id: "long-term" | "short-term";
+  title: string;
+  tagline: string;
+  idealFor: string;
+  heroImage: string;
+  overview: string;
+  keyDifferentiators: string[];
+  responsibilities: string[];
+}
+
+export const MANAGEMENT_TRACKS: ManagementTrack[] = [
+  {
+    id: "long-term",
+    title: "Long-Term Residential Management",
+    tagline: "Consistent yield, verified tenants, zero day-to-day friction.",
+    idealFor: "Single-family homes, luxury estates & multi-family properties seeking predictable occupancy and long-term asset preservation.",
+    heroImage: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+    overview: "We steward your long-term Arizona investment with uncompromising tenant screening, strict lease enforcement, proactive inspections, and prompt monthly direct deposits.",
+    keyDifferentiators: [
+      "Rigorous 6-point background, income & credit screening",
+      "Drafting & execution of Arizona-compliant residential leases",
+      "Routine move-in, mid-lease & move-out photo audit inspections",
+      "Strict zero-tolerance rent enforcement & swift legal handling"
+    ],
+    responsibilities: [
+      "Comprehensive digital marketing across Arizona MLS & syndicates",
+      "Direct owner disbursements with automated monthly P&L statements",
+      "24/7 emergency dispatch for maintenance and mechanical failures",
+      "Regular lease renewals and fair market rent rate evaluations"
     ]
   },
   {
-    id: "vacation-rentals-str",
-    title: "Vacation Rentals (Airbnb & Vrbo)",
-    category: "str",
-    subtitle: "High-yield short-term rental management with 5-star guest care.",
-    description: "Scottsdale is one of the nation's premier vacation rental destinations. We optimize dynamic daily rates, coordinate hotel-grade cleanings, manage 24/7 guest communication, and safeguard your luxury asset.",
-    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80",
-    highlights: ["Dynamic algorithmic pricing", "24/7 local guest concierge", "Turnover & professional housekeeping"],
-    features: [
-      "Optimized listing creation across Airbnb & Vrbo",
-      "Pre-arrival noise monitoring & guest vetting",
-      "City of Scottsdale short-term rental compliance",
-      "Professional linen & turnover cleaning crews",
-      "Proactive consumable replenishment"
-    ]
-  },
-  {
-    id: "multi-family-management",
-    title: "Multi-Family Properties",
-    category: "multifamily",
-    subtitle: "Scaled operational efficiency and transparent portfolio accounting.",
-    description: "Designed for small-to-mid sized apartment complexes, duplexes, and multi-unit residential portfolios. We streamline leasing pipelines, automate rent collections, and lower per-unit maintenance costs.",
-    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80",
-    highlights: ["Automated billing systems", "Scaled vendor contractor pricing", "Accurate monthly P&L statements"],
-    features: [
-      "Consolidated multi-unit owner reporting",
-      "On-demand tenant online service requests",
-      "Strategic unit turnover and capital improvement plans",
-      "Strict legal eviction processing if ever required",
-      "Real-time visibility via Propertyware owner portal"
-    ]
-  },
-  {
-    id: "maintenance-irrigation",
-    title: "Desert Landscaping & Maintenance",
-    category: "maintenance",
-    subtitle: "Proactive desert care, irrigation troubleshooting & repairs.",
-    description: "Arizona's intense climate requires specialized maintenance. We provide preventive care programs, irrigation system troubleshooting, pool vendor coordination, and 24/7 emergency repair response.",
-    image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80",
-    highlights: ["Irrigation & drip system maintenance", "24/7 emergency dispatch", "No hidden contractor markups"],
-    features: [
-      "Routine seasonal irrigation inspections",
-      "Vetted, insured local Arizona tradespeople",
-      "HVAC pre-summer servicing checks",
-      "Curb appeal maintenance & landscaping oversight",
-      "Itemized invoices with photo verification"
+    id: "short-term",
+    title: "Scottsdale Vacation Rentals (Airbnb & Vrbo)",
+    tagline: "Maximizing ADR & occupancy with 5-star guest hospitality.",
+    idealFor: "Luxury desert retreats, Old Town entertainment homes, and vacation properties aiming for peak seasonal returns.",
+    heroImage: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80",
+    overview: "Scottsdale is an internationally renowned vacation destination. We manage the high volume day-to-day operations: dynamic daily pricing, 24/7 guest communication, hotel-grade cleanings, and city STR regulatory compliance.",
+    keyDifferentiators: [
+      "Algorithmic daily rate optimization (WM Phoenix Open, Spring Training, golf season)",
+      "Strict pre-arrival guest verification and noise monitoring integration",
+      "Coordination of dedicated hotel-grade turnover cleaners & linen service",
+      "City of Scottsdale short-term rental license & code adherence"
+    ],
+    responsibilities: [
+      "Full multi-platform listing management across Airbnb, Vrbo & direct channels",
+      "24/7 local guest concierge and emergency assistance",
+      "Regular consumable restocking (toiletries, coffee, kitchen staples)",
+      "Post-checkout property inspections and immediate damage reporting"
     ]
   }
 ];
 
-export const PROCESS_STEPS = [
+export const OPERATIONAL_CAPABILITIES = [
   {
-    step: "01",
-    title: "Complimentary Rental Analysis",
-    description: "We evaluate your property's fair market rent, seasonal demand factors, and rent-ready optimization recommendations based on recent local Scottsdale comps."
+    id: "maintenance",
+    title: "In-House Maintenance & Repairs",
+    description: "Led by Partner Braxton Heise, our maintenance team handles preventive care schedules, plumbing, electrical, and swift 24/7 emergency dispatch without inflated vendor markups.",
+    detail: "Move-in / move-out photographic reports, preventative pre-summer HVAC checks, and itemized receipts on every service ticket."
   },
   {
-    step: "02",
-    title: "Seamless Onboarding & Marketing",
-    description: "Professional high-definition photography, dynamic multi-channel listing syndication, and digital lockbox installation to attract qualified applicants."
+    id: "landscaping",
+    title: "Desert Landscaping & Xeriscaping",
+    description: "Scottsdale's climate demands specialized exterior care. From desert cacti and citrus maintenance to gravel weed remediation and shade canopy trimming, we maintain impeccable curb appeal.",
+    detail: "Ensures tenant enjoyment and maintains HOA compliance across Scottsdale communities."
   },
   {
-    step: "03",
-    title: "Rigorous Tenant Screening",
-    description: "We verify credit history, nationwide criminal background, rental history, employment verification, and income ratios to select dependable residents."
+    id: "irrigation",
+    title: "Irrigation Repairs & Troubleshooting",
+    description: "A compromised drip line can ruin Sonoran flora or inflate water bills overnight. We routinely audit controllers, valves, backflow preventers, and drip emitters.",
+    detail: "Optimum seasonal watering schedules that conserve water while sustaining desert landscape health."
   },
   {
-    step: "04",
-    title: "Hands-Off Management & Financials",
-    description: "Sit back and receive reliable monthly direct deposits along with itemized statements and real-time portal access to every work order and dollar earned."
+    id: "inspections",
+    title: "Documented Property Inspections",
+    description: "Detailed photo audits conducted at move-in, move-out, and periodic intervals throughout the tenancy ensure lease adherence and early detection of minor wear.",
+    detail: "Directly uploaded to your Propertyware owner portal with high-resolution imagery and notes."
+  },
+  {
+    id: "accounting",
+    title: "Accounting & Transparent P&L",
+    description: "Under Controller Trevor Reeves, owners receive clean, audit-ready financial statements, transparent 1099 tax summaries, and automated electronic owner draws.",
+    detail: "Real-time access to ledger balances, invoice attachments, and deposit timelines."
   }
 ];
 
-export const TRUST_PILLARS = [
+export const TECH_PORTAL_DETAILS = [
   {
-    title: "We Think Like Landlords",
-    description: "As rental owners ourselves, we understand that preserving capital and protecting asset condition are just as crucial as maximizing monthly cash flow.",
-    iconName: "ShieldCheck"
+    title: "24/7 Real-Time Owner Visibility",
+    desc: "Through our Propertyware owner portal, check the status of your property anywhere in the world from any smartphone or computer."
   },
   {
-    title: "Hands-On Local Presence",
-    description: "Based right here in Scottsdale on Raintree Drive. When emergencies arise or routine inspections are due, our boots are on the ground within minutes.",
-    iconName: "MapPin"
+    title: "Live Maintenance Tracking",
+    desc: "View work orders as they are created, reviewed, and completed, complete with before/after photos and vendor invoices."
   },
   {
-    title: "24/7 Proactive Communication",
-    description: "You have a dedicated account representative. Owners and tenants have immediate access to round-the-clock emergency support and live updates.",
-    iconName: "Clock"
+    title: "Streamlined Tenant Experience",
+    desc: "Tenants utilize ClickPay for frictionless ACH and card rent payments, maintenance submissions, and clear lease covenant guidelines."
   },
   {
-    title: "Transparent Tech-Enabled Accounting",
-    description: "Log in anytime from any device to see real-time financials, lease documents, inspection photo archives, and itemized vendor invoices.",
-    iconName: "BarChart3"
-  }
-];
-
-export const WHY_CHOOSE_US_POINTS = [
-  {
-    title: "Strategic Local Rent Pricing",
-    description: "We analyze hyper-local micro-markets across North Scottsdale, Old Town, and Paradise Valley to capture top-of-market yield without extended vacancy."
-  },
-  {
-    title: "Thorough 6-Point Screening",
-    description: "Comprehensive background, identity verification, eviction registry checks, credit analysis, and landlord references protect your property and neighbors."
-  },
-  {
-    title: "Regular Documented Inspections",
-    description: "Detailed photo and checklist audits conducted at move-in, move-out, and periodic intervals throughout tenancy ensure maintenance issues are resolved early."
-  },
-  {
-    title: "Reliable Rent Collection & Direct Deposit",
-    description: "Convenient electronic tenant payment portals ensure punctual rent collection with strict adherence to Arizona lease covenants and swift disbursement."
-  },
-  {
-    title: "Desert Property Specialization",
-    description: "Expertise in managing unique Arizona property dynamics: intense summer HVAC demands, desert xeriscaping, and complex pool & drip irrigation systems."
-  },
-  {
-    title: "Efficient & Professional Legal Handling",
-    description: "In the rare event tenant non-compliance occurs, our experienced team manages the legal notice and eviction procedures strictly following Arizona statutes."
+    title: "Automated Financial Dispatches",
+    desc: "Monthly owner disbursements sent directly to your account, accompanied by easy-to-read balance sheets and year-end tax documentation."
   }
 ];

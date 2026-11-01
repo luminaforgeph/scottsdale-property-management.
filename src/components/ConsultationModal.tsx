@@ -1,183 +1,174 @@
-import React, { useState } from 'react';
-import { X, CheckCircle2, Send } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { X, CheckCircle2, ArrowRight } from 'lucide-react';
 import { COMPANY_INFO } from '../data/content';
 
 interface ConsultationModalProps {
   isOpen: boolean;
   onClose: () => void;
-  serviceInterest?: string;
+  prefilledEstimate?: { rent: number; type: string; area: string } | null;
 }
 
-export const ConsultationModal: React.FC<ConsultationModalProps> = ({
+export const ConsultationModal = ({
   isOpen,
   onClose,
-  serviceInterest = ''
-}) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    address: '',
-    service: serviceInterest || 'Residential Single-Family',
-    notes: ''
-  });
+  prefilledEstimate,
+}: ConsultationModalProps) => {
   const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [address, setAddress] = useState('');
+  const [propertyType, setPropertyType] = useState('Single-Family Long-Term');
+
+  useEffect(() => {
+    if (prefilledEstimate) {
+      setPropertyType(prefilledEstimate.type);
+    }
+  }, [prefilledEstimate]);
 
   if (!isOpen) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setSubmitted(true);
-    }, 500);
+    setSubmitted(true);
+  };
+
+  const handleClose = () => {
+    setSubmitted(false);
+    onClose();
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-      {/* Backdrop */}
-      <div
-        className="fixed inset-0 bg-black/70 backdrop-blur-sm transition-opacity"
-        onClick={onClose}
-      />
-
-      {/* Modal Dialog */}
-      <div className="relative bg-[#FAF9F5] border border-[#E2DDD2] rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl z-10 animate-in fade-in zoom-in-95 duration-200">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+      <div className="relative bg-[#FAF9F6] w-full max-w-lg rounded-xs border border-sandstone shadow-2xl p-6 sm:p-8 animate-fadeIn">
         <button
-          onClick={onClose}
-          className="absolute top-4 right-4 text-slate-400 hover:text-[#0E1626] p-1 rounded-full hover:bg-slate-200/50 transition-colors"
-          aria-label="Close dialog"
+          onClick={handleClose}
+          className="absolute top-4 right-4 text-charcoal-muted hover:text-desert-charcoal transition-colors p-1"
+          aria-label="Close modal"
         >
           <X className="w-5 h-5" />
         </button>
 
         {submitted ? (
-          <div className="text-center py-8">
-            <div className="w-14 h-14 bg-[#0E1626] text-[#E6CA85] rounded-full flex items-center justify-center mx-auto mb-5">
-              <CheckCircle2 className="w-8 h-8" />
+          <div className="text-center py-8 space-y-4">
+            <div className="w-12 h-12 bg-desert-charcoal text-terracotta rounded-full flex items-center justify-center mx-auto">
+              <CheckCircle2 className="w-7 h-7" />
             </div>
-            <h3 className="font-serif text-2xl font-bold text-[#0E1626] mb-2">
+            <h3 className="font-serif text-2xl text-desert-charcoal font-medium">
               Consultation Requested
             </h3>
-            <p className="text-slate-600 text-sm leading-relaxed mb-6">
-              Thank you, <strong className="text-[#0E1626]">{formData.name || 'Property Owner'}</strong>. A Scottsdale property management representative will review your inquiry and connect with you directly.
+            <p className="text-xs text-charcoal-muted font-sans leading-relaxed">
+              Thank you, <strong>{name}</strong>. A Scottsdale property management representative will review your inquiry and connect with you directly.
             </p>
-            <div className="bg-[#F3EFE6] p-4 rounded-lg text-xs text-slate-700 mb-6">
+            <div className="p-3 bg-sandstone rounded-xs text-xs font-sans text-desert-charcoal">
               Need immediate answers? Call us directly: <br />
-              <strong className="text-sm text-[#0E1626]">{COMPANY_INFO.phone}</strong>
+              <a href={`tel:${COMPANY_INFO.phoneRaw}`} className="font-bold text-terracotta hover:underline">
+                {COMPANY_INFO.phone}
+              </a>
             </div>
             <button
-              onClick={() => {
-                setSubmitted(false);
-                onClose();
-              }}
-              className="bg-[#0E1626] text-white px-6 py-2.5 rounded-md text-sm font-semibold hover:bg-[#1A2642] transition-colors"
+              onClick={handleClose}
+              className="mt-4 bg-desert-charcoal text-sandstone px-6 py-2.5 rounded-xs text-xs uppercase font-medium tracking-wider hover:bg-terracotta transition-editorial font-sans"
             >
               Close Window
             </button>
           </div>
         ) : (
           <div>
-            <div className="mb-6">
-              <span className="text-[11px] uppercase tracking-wider text-[#C59A45] font-bold">
+            <div className="border-b border-sandstone pb-4 mb-5">
+              <div className="text-[10px] uppercase tracking-widest text-terracotta font-semibold font-sans mb-1">
                 Scottsdale Property Management
-              </span>
-              <h3 className="font-serif text-2xl font-bold text-[#0E1626] mt-1">
-                Request Owner Consultation
+              </div>
+              <h3 className="font-serif text-2xl text-desert-charcoal font-medium">
+                Request a Consultation
               </h3>
-              <p className="text-xs text-slate-600 mt-1">
-                Direct consultation for landlords, vacation rental hosts, and multi-family investors.
+              <p className="text-xs text-charcoal-muted font-sans mt-1">
+                {prefilledEstimate
+                  ? `Based on estimated yield of $${prefilledEstimate.rent.toLocaleString()}/mo in ${prefilledEstimate.area}`
+                  : 'Discuss your rental asset with an SPM partner.'}
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-3.5">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
-                  Full Name *
+                <label className="text-[11px] uppercase tracking-wider text-desert-charcoal font-sans font-semibold block mb-1">
+                  Your Full Name *
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Robert Smith"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full bg-white border border-[#D5CFBF] rounded-md px-3 py-2 text-sm text-[#0E1626] focus:outline-none focus:border-[#C59A45]"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="e.g. Jonathan Vance"
+                  className="w-full bg-sandstone-light border border-sandstone rounded-xs py-2 px-3 text-xs font-sans text-desert-charcoal focus:outline-none focus:border-terracotta"
                 />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                  <label className="text-[11px] uppercase tracking-wider text-desert-charcoal font-sans font-semibold block mb-1">
                     Phone *
                   </label>
                   <input
                     type="tel"
                     required
-                    placeholder="(602) 555-0123"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full bg-white border border-[#D5CFBF] rounded-md px-3 py-2 text-sm text-[#0E1626] focus:outline-none focus:border-[#C59A45]"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="(602) 000-0000"
+                    className="w-full bg-sandstone-light border border-sandstone rounded-xs py-2 px-3 text-xs font-sans text-desert-charcoal focus:outline-none focus:border-terracotta"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                  <label className="text-[11px] uppercase tracking-wider text-desert-charcoal font-sans font-semibold block mb-1">
                     Email *
                   </label>
                   <input
                     type="email"
                     required
-                    placeholder="name@email.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full bg-white border border-[#D5CFBF] rounded-md px-3 py-2 text-sm text-[#0E1626] focus:outline-none focus:border-[#C59A45]"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="owner@domain.com"
+                    className="w-full bg-sandstone-light border border-sandstone rounded-xs py-2 px-3 text-xs font-sans text-desert-charcoal focus:outline-none focus:border-terracotta"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
-                  Property Address or City *
+                <label className="text-[11px] uppercase tracking-wider text-desert-charcoal font-sans font-semibold block mb-1">
+                  Property Address or Submarket
                 </label>
                 <input
                   type="text"
-                  required
-                  placeholder="e.g. 10450 E Desert Trail, Scottsdale"
-                  value={formData.address}
-                  onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                  className="w-full bg-white border border-[#D5CFBF] rounded-md px-3 py-2 text-sm text-[#0E1626] focus:outline-none focus:border-[#C59A45]"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  placeholder="e.g. 9259 E Raintree Dr, Scottsdale, AZ"
+                  className="w-full bg-sandstone-light border border-sandstone rounded-xs py-2 px-3 text-xs font-sans text-desert-charcoal focus:outline-none focus:border-terracotta"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
-                  Management Interest
+                <label className="text-[11px] uppercase tracking-wider text-desert-charcoal font-sans font-semibold block mb-1">
+                  Property Classification
                 </label>
                 <select
-                  value={formData.service}
-                  onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                  className="w-full bg-white border border-[#D5CFBF] rounded-md px-3 py-2 text-sm text-[#0E1626] focus:outline-none focus:border-[#C59A45]"
+                  value={propertyType}
+                  onChange={(e) => setPropertyType(e.target.value)}
+                  className="w-full bg-sandstone-light border border-sandstone rounded-xs py-2 px-3 text-xs font-sans text-desert-charcoal focus:outline-none focus:border-terracotta"
                 >
-                  <option value="Residential Single-Family">Single-Family Long-Term Rental</option>
-                  <option value="Vacation Rental (Airbnb & Vrbo)">Vacation Rental (Airbnb / Vrbo)</option>
-                  <option value="Multi-Family Properties">Multi-Family / Multi-Unit Complex</option>
-                  <option value="Irrigation & Landscape Maintenance">Desert Landscaping & Maintenance</option>
+                  <option value="Single-Family Long-Term">Single-Family Long-Term</option>
+                  <option value="Vacation Rental (Airbnb & Vrbo)">Vacation Rental (Airbnb &amp; Vrbo)</option>
+                  <option value="Multi-Family Property">Multi-Family / Scaled Portfolio</option>
+                  <option value="Desert Landscaping & Maintenance Only">Desert Landscaping &amp; Maintenance</option>
                 </select>
               </div>
 
               <button
                 type="submit"
-                disabled={loading}
-                className="w-full bg-[#0E1626] hover:bg-[#1A2642] text-white font-bold py-3 px-4 rounded-md shadow-md text-sm transition-all duration-150 flex items-center justify-center gap-2 mt-4 cursor-pointer"
+                className="w-full mt-2 bg-desert-charcoal hover:bg-terracotta text-sandstone py-3.5 rounded-xs text-xs font-medium uppercase tracking-wider transition-editorial flex items-center justify-center gap-2 shadow-sm font-sans"
               >
-                {loading ? 'Submitting...' : 'Submit Consultation Request'}
-                <Send className="w-4 h-4 text-[#C59A45]" />
+                <span>Submit Request</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
-
-              <div className="text-[11px] text-center text-slate-500 pt-1">
-                You can also call us directly anytime at <a href={`tel:${COMPANY_INFO.phoneRaw}`} className="font-semibold text-[#0E1626] underline">{COMPANY_INFO.phone}</a>.
-              </div>
             </form>
           </div>
         )}

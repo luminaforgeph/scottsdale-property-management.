@@ -1,65 +1,81 @@
 import { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
-import { TrustValuePropSection } from './components/TrustValuePropSection';
-import { ServicesSection } from './components/ServicesSection';
-import { WhyChooseUsSection } from './components/WhyChooseUsSection';
-import { ProcessSection } from './components/ProcessSection';
+import { PhilosophySection } from './components/PhilosophySection';
+import { TwoManagementTracksSection } from './components/TwoManagementTracksSection';
+import { OperationalCapabilitiesSection } from './components/OperationalCapabilitiesSection';
+import { TechOwnerExperienceSection } from './components/TechOwnerExperienceSection';
+import { TeamSection } from './components/TeamSection';
 import { QuickRentalCalculator } from './components/QuickRentalCalculator';
+import { GenuineTestimonialsSection } from './components/GenuineTestimonialsSection';
 import { ConsultationCTASection } from './components/ConsultationCTASection';
-import { Footer } from './components/Footer';
 import { ConsultationModal } from './components/ConsultationModal';
+import { Footer } from './components/Footer';
 
 export function App() {
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedServiceInterest, setSelectedServiceInterest] = useState<string>('');
+  const [estimateData, setEstimateData] = useState<{ rent: number; type: string; area: string } | null>(null);
 
-  const handleOpenConsultation = (serviceTitle?: string) => {
-    if (serviceTitle) {
-      setSelectedServiceInterest(serviceTitle);
-    }
+  const handleOpenConsultation = () => {
+    setEstimateData(null);
     setModalOpen(true);
   };
 
+  const handleOpenConsultationWithEstimate = (estimate: { rent: number; type: string; area: string }) => {
+    setEstimateData(estimate);
+    setModalOpen(true);
+  };
+
+  const scrollToTracks = () => {
+    const el = document.getElementById('management-tracks');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF9F5] text-[#1E293B]">
-      {/* 1. Navigation Bar */}
-      <Navbar onRequestConsultation={() => handleOpenConsultation()} />
+    <div className="min-h-screen bg-[#F7F5F0] text-[#181A1D] selection:bg-terracotta selection:text-white flex flex-col font-sans">
+      {/* 1. Sonoran Modern Sticky Header */}
+      <Navbar onRequestConsultation={handleOpenConsultation} />
 
-      {/* Main Homepage Flow */}
       <main className="flex-grow">
-        {/* 2. Hero Section */}
-        <HeroSection onRequestConsultation={() => handleOpenConsultation()} />
+        {/* 2. Hero Section: Editorial Asymmetry & Intentional Positioning */}
+        <HeroSection
+          onRequestConsultation={handleOpenConsultation}
+          onExploreTracks={scrollToTracks}
+        />
 
-        {/* 3. Trust / Value Proposition Section */}
-        <TrustValuePropSection />
+        {/* 3. Section A: The SPM Philosophy (We Think Like Landlords) */}
+        <PhilosophySection onRequestConsultation={handleOpenConsultation} />
 
-        {/* Interactive Scottsdale Rent Yield Estimator Tool */}
-        <section className="py-12 bg-[#FAF9F5] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full -mt-6">
-          <QuickRentalCalculator onOpenConsultation={() => handleOpenConsultation()} />
-        </section>
+        {/* 4. Section B: Two Ways to Manage Property (LTR vs Vacation Rentals / STR) */}
+        <TwoManagementTracksSection onRequestConsultation={handleOpenConsultation} />
 
-        {/* 4. Property Management Service Cards */}
-        <ServicesSection onRequestConsultation={(title) => handleOpenConsultation(title)} />
+        {/* 5. Section C: Beyond Rent Collection (Maintenance, Landscaping & Irrigation) */}
+        <OperationalCapabilitiesSection onRequestConsultation={handleOpenConsultation} />
 
-        {/* 5. Why Choose Us Section */}
-        <WhyChooseUsSection onRequestConsultation={() => handleOpenConsultation()} />
+        {/* 6. Section D: A More Informed Ownership Experience (Technology & Portals) */}
+        <TechOwnerExperienceSection onRequestConsultation={handleOpenConsultation} />
 
-        {/* 6. How Our Management Process Works */}
-        <ProcessSection onRequestConsultation={() => handleOpenConsultation()} />
+        {/* 7. Section E: Meet the People Behind the Management (Verified Leadership & Staff) */}
+        <TeamSection onRequestConsultation={handleOpenConsultation} />
 
-        {/* 7. Property Owner Consultation CTA / Free Rental Valuation */}
-        <ConsultationCTASection initialService={selectedServiceInterest} />
+        {/* 8. Section F: Rental Assessment & Interactive Scottsdale Yield Estimator */}
+        <QuickRentalCalculator onOpenConsultationWithEstimate={handleOpenConsultationWithEstimate} />
+
+        {/* 9. Section G: Genuine Testimonials (Verified Client Quotations) */}
+        <GenuineTestimonialsSection />
+
+        {/* 10. Consultation Inquiry Form */}
+        <ConsultationCTASection />
       </main>
 
-      {/* 8. Professional Footer */}
+      {/* 11. Sonoran Modern Professional Footer */}
       <Footer />
 
-      {/* Interactive Consultation Modal */}
+      {/* Interactive Modal */}
       <ConsultationModal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
-        serviceInterest={selectedServiceInterest}
+        prefilledEstimate={estimateData}
       />
     </div>
   );

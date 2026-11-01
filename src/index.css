@@ -5,6 +5,13 @@
     --font-serif: 'Playfair Display', Georgia, serif;
     --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   }
+
+  body {
+    background-color: #F7F5F0;
+    color: #1C1E21;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
 }
 
 .font-serif {
@@ -15,45 +22,83 @@
   font-family: var(--font-sans);
 }
 
-/* Custom warm luxury utility classes */
-.bg-warm-ivory {
-  background-color: #FAF9F5;
+/* Sonoran Modern Color Palette tokens */
+.bg-limestone {
+  background-color: #F7F5F0;
 }
 
-.bg-warm-sand {
-  background-color: #F3EFE6;
+.bg-sandstone {
+  background-color: #EBE5DA;
 }
 
-.bg-deep-navy {
-  background-color: #0E1626;
+.bg-sandstone-light {
+  background-color: #F2ECE1;
 }
 
-.bg-charcoal {
-  background-color: #172033;
+.bg-desert-charcoal {
+  background-color: #181A1D;
 }
 
-.text-gold-accent {
-  color: #C59A45;
+.bg-desert-charcoal-deep {
+  background-color: #111316;
 }
 
-.bg-gold-accent {
-  background-color: #C59A45;
+.text-desert-charcoal {
+  color: #181A1D;
 }
 
-.border-gold-accent {
-  border-color: #C59A45;
+.bg-terracotta {
+  background-color: #C06C47;
 }
 
-/* Subtle smooth gradient for hero overlay */
-.hero-gradient {
-  background: linear-gradient(180deg, rgba(14, 22, 38, 0.78) 0%, rgba(14, 22, 38, 0.88) 100%);
+.text-terracotta {
+  color: #C06C47;
 }
 
-.card-hover-effect {
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+.border-terracotta {
+  border-color: #C06C47;
 }
 
-.card-hover-effect:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 30px -10px rgba(14, 22, 38, 0.08);
+.bg-terracotta-dark {
+  background-color: #A85735;
+}
+
+.bg-desert-sage {
+  background-color: #5C6E5A;
+}
+
+.text-desert-sage {
+  color: #5C6E5A;
+}
+
+.border-desert-sage {
+  border-color: #5C6E5A;
+}
+
+.bg-desert-sage-subtle {
+  background-color: #EEF2EC;
+}
+
+/* Editorial subtle borders */
+.border-sandstone {
+  border-color: #E0D8CB;
+}
+
+/* Editorial subtle text tones */
+.text-charcoal-muted {
+  color: #555A60;
+}
+
+/* Image shadow and modern architectural frames */
+.editorial-shadow {
+  box-shadow: 0 16px 36px -12px rgba(24, 26, 29, 0.12);
+}
+
+.editorial-shadow-lg {
+  box-shadow: 0 24px 48px -12px rgba(24, 26, 29, 0.18);
+}
+
+/* Deliberate refined transitions */
+.transition-editorial {
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
 }

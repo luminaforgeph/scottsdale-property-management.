@@ -1,115 +1,139 @@
-import React from 'react';
-import { ArrowRight, ShieldCheck, CheckCircle2, ChevronRight } from 'lucide-react';
+import { ArrowRight, Phone, CheckCircle2 } from 'lucide-react';
 import { COMPANY_INFO } from '../data/content';
 
 interface HeroSectionProps {
   onRequestConsultation: () => void;
+  onExploreTracks: () => void;
 }
 
-export const HeroSection: React.FC<HeroSectionProps> = ({ onRequestConsultation }) => {
+export const HeroSection = ({
+  onRequestConsultation,
+  onExploreTracks,
+}: HeroSectionProps) => {
   return (
-    <section className="relative min-h-[640px] lg:min-h-[720px] flex items-center bg-[#0E1626] overflow-hidden">
-      {/* Background Photography with Warm Luxury Tint */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=2000&q=85"
-          alt="Luxury Scottsdale architectural desert home with patio and pool"
-          className="w-full h-full object-cover object-center scale-105 transition-transform duration-1000 ease-out"
-        />
-        {/* Gradients to keep typography crisp and prestigious */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A101C] via-[#0E1626]/90 to-[#0E1626]/60" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A101C] via-transparent to-transparent opacity-80" />
-      </div>
+    <section className="relative bg-[#F7F5F0] pt-8 pb-16 lg:pt-16 lg:pb-28 overflow-hidden border-b border-sandstone">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8">
+        {/* Editorial Top Eyebrow */}
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-sandstone/80 pb-6 mb-10">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-terracotta inline-block"></span>
+            <span className="text-xs uppercase tracking-[0.25em] font-sans font-semibold text-desert-charcoal">
+              Scottsdale &bull; Paradise Valley &bull; Sonoran Modern Management
+            </span>
+          </div>
+          <div className="text-xs text-charcoal-muted font-sans hidden sm:block">
+            Specializing in Long-Term Residences &amp; High-Yield Vacation Rentals
+          </div>
+        </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-
-          {/* Main Hero Copy (Landlord-Focused) */}
-          <div className="lg:col-span-8 max-w-2xl">
-            {/* Tagline Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-[#C59A45]/40 text-[#E6CA85] text-xs font-semibold uppercase tracking-wider mb-6">
-              <ShieldCheck className="w-4 h-4 text-[#C59A45]" />
-              <span>Scottsdale & Paradise Valley Property Management</span>
+        {/* Asymmetrical Editorial Hero Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          {/* Left Column: Bold Typography & Conversion Strategy (7 Cols) */}
+          <div className="lg:col-span-7 space-y-8">
+            <div className="space-y-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sandstone text-desert-charcoal text-xs font-medium">
+                <span className="text-desert-sage font-bold">&bull;</span>
+                <span>By Property Owners, For Property Owners</span>
+              </div>
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-desert-charcoal leading-[1.12] tracking-tight font-medium">
+                Property ownership. <br />
+                <span className="italic font-normal text-terracotta">Managed with intention.</span>
+              </h1>
             </div>
 
-            {/* Suggested Hero Headline */}
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-white font-medium tracking-tight leading-[1.15]">
-              Your Property Deserves <span className="italic font-serif text-[#E6CA85]">Better Management.</span>
-            </h1>
-
-            {/* Suggested Supporting Text */}
-            <p className="mt-6 text-lg sm:text-xl text-slate-300 leading-relaxed font-normal max-w-xl">
-              Property ownership should be an investment, not a second full-time job. Discover a more thoughtful approach to managing your rental property.
+            <p className="text-base sm:text-lg text-charcoal-muted leading-relaxed font-sans max-w-xl">
+              From long-term residences to Scottsdale vacation homes, we take a hands-on approach to protecting and managing your investment.
             </p>
 
-            {/* CTA Group */}
-            <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+            {/* Editorial CTAs */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
               <button
                 onClick={onRequestConsultation}
-                className="bg-gradient-to-r from-[#C59A45] via-[#D4AF37] to-[#B38734] hover:from-[#D4AF37] hover:to-[#C59A45] text-[#0A101C] font-bold text-base px-8 py-4 rounded-md shadow-xl shadow-[#C59A45]/20 hover:shadow-2xl hover:shadow-[#C59A45]/30 transition-all duration-200 flex items-center justify-center gap-3 cursor-pointer group"
+                className="bg-desert-charcoal hover:bg-terracotta text-sandstone px-8 py-4 rounded-xs text-sm font-medium tracking-wider uppercase transition-editorial flex items-center justify-center gap-3 shadow-md group"
               >
                 <span>Request a Consultation</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </button>
 
-              <a
-                href="#services"
-                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-md bg-white/10 hover:bg-white/15 text-white font-medium text-base border border-white/20 backdrop-blur-sm transition-all duration-200 hover:border-white/40"
+              <button
+                onClick={onExploreTracks}
+                className="bg-transparent hover:bg-sandstone text-desert-charcoal border border-desert-charcoal/40 hover:border-desert-charcoal px-7 py-4 rounded-xs text-sm font-medium tracking-wider uppercase transition-editorial text-center"
               >
-                <span>Explore Our Services</span>
-                <ChevronRight className="w-4 h-4 text-slate-400" />
-              </a>
+                Explore Two Management Tracks
+              </button>
             </div>
 
-            {/* Value bullets */}
-            <div className="mt-10 pt-8 border-t border-white/15 grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="flex items-center gap-2.5 text-sm text-slate-300">
-                <CheckCircle2 className="w-4 h-4 text-[#C59A45] shrink-0" />
-                <span>Zero Hidden Vendor Markups</span>
+            {/* Reassurance Grid with Authentic SPM Elements */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-sandstone/80 text-xs font-sans">
+              <div className="flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-desert-sage flex-shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-semibold text-desert-charcoal block">Owner-Run Team</span>
+                  <span className="text-charcoal-muted">We own rental properties in the Valley ourselves</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2.5 text-sm text-slate-300">
-                <CheckCircle2 className="w-4 h-4 text-[#C59A45] shrink-0" />
-                <span>24/7 Dedicated Owner Support</span>
+              <div className="flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-desert-sage flex-shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-semibold text-desert-charcoal block">In-House Operations</span>
+                  <span className="text-charcoal-muted">Dedicated maintenance &amp; desert irrigation</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2.5 text-sm text-slate-300">
-                <CheckCircle2 className="w-4 h-4 text-[#C59A45] shrink-0" />
-                <span>Free Rental Market Analysis</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Quick Real-Time Landlord Snapshot Card */}
-          <div className="lg:col-span-4">
-            <div className="bg-[#121B2F]/90 backdrop-blur-md border border-white/15 rounded-xl p-6 sm:p-8 shadow-2xl text-white relative">
-              <div className="absolute -top-3 right-6 bg-[#C59A45] text-[#0A101C] text-[11px] font-bold uppercase tracking-wider px-3 py-0.5 rounded-full shadow-sm">
-                Owner Direct Line
-              </div>
-
-              <div className="font-serif text-2xl font-semibold mb-2">Speak With A Property Manager</div>
-              <p className="text-sm text-slate-300 mb-6 leading-relaxed">
-                Whether you have an empty rental, an underperforming short-term vacation property, or are transitioning from another company:
-              </p>
-
-              <div className="bg-white/5 border border-white/10 rounded-lg p-4 mb-6">
-                <div className="text-xs uppercase tracking-wider text-slate-400 mb-1">Direct Arizona Office</div>
-                <div className="text-2xl font-bold text-white tracking-wide">{COMPANY_INFO.phone}</div>
-                <div className="text-xs text-[#E6CA85] mt-1">Scottsdale office • Open Mon - Fri 8am - 6pm</div>
-              </div>
-
-              <div className="space-y-3">
-                <button
-                  onClick={onRequestConsultation}
-                  className="w-full bg-white/10 hover:bg-[#C59A45] hover:text-[#0A101C] text-white font-semibold py-3 px-4 rounded-md text-sm transition-all duration-200 border border-white/15 hover:border-[#C59A45] text-center cursor-pointer"
-                >
-                  Get Your Free Rental Estimate
-                </button>
-                <div className="text-[12px] text-center text-slate-400">
-                  No obligation • In-depth local comps
+              <div className="flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-desert-sage flex-shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-semibold text-desert-charcoal block">Real-Time Portals</span>
+                  <span className="text-charcoal-muted">Propertyware owner access with complete P&amp;L</span>
                 </div>
               </div>
             </div>
           </div>
 
+          {/* Right Column: Layered Editorial Imagery & Direct Contact Badge (5 Cols) */}
+          <div className="lg:col-span-5 relative">
+            <div className="relative mx-auto max-w-md lg:max-w-none">
+              {/* Primary Architectural Image: Authentic Scottsdale Desert-Modern */}
+              <div className="relative rounded-xs overflow-hidden border border-sandstone shadow-xl aspect-[4/5] bg-sandstone">
+                <img
+                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=85"
+                  alt="Scottsdale contemporary desert-modern residential property"
+                  className="w-full h-full object-cover object-center transform hover:scale-102 transition-editorial duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-desert-charcoal-deep/80 via-transparent to-black/10"></div>
+
+                {/* Bottom Overlay Story Card */}
+                <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xs bg-[#FAF9F6]/95 backdrop-blur-md border border-sandstone shadow-md">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="text-[10px] uppercase tracking-widest text-desert-sage font-bold">
+                        Local Scottsdale Operations
+                      </div>
+                      <div className="font-serif text-sm font-semibold text-desert-charcoal">
+                        9259 E Raintree Dr &middot; Ste 2019
+                      </div>
+                    </div>
+                    <a
+                      href={`tel:${COMPANY_INFO.phoneRaw}`}
+                      className="flex items-center gap-1.5 text-xs font-semibold text-terracotta hover:underline"
+                    >
+                      <Phone className="w-3.5 h-3.5" />
+                      <span>{COMPANY_INFO.phone}</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Offset Accent Stamp: Architectural Badge */}
+              <div className="hidden sm:block absolute -top-5 -left-5 bg-desert-charcoal text-sandstone p-4 rounded-xs shadow-lg border border-sandstone/20 max-w-[170px]">
+                <div className="font-serif text-2xl font-normal text-terracotta leading-none">
+                  24/7
+                </div>
+                <div className="text-[11px] font-sans text-sandstone mt-1 leading-tight">
+                  Proactive owner &amp; guest emergency dispatch
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -2,268 +2,217 @@ import React, { useState } from 'react';
 import { Send, CheckCircle2, Phone, MapPin } from 'lucide-react';
 import { COMPANY_INFO } from '../data/content';
 
-interface ConsultationSectionProps {
-  initialService?: string;
-}
-
-export const ConsultationCTASection: React.FC<ConsultationSectionProps> = ({ initialService = '' }) => {
+export const ConsultationCTASection: React.FC = () => {
+  const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
-    fullName: '',
+    name: '',
     email: '',
     phone: '',
     propertyAddress: '',
-    propertyType: initialService || 'Single-Family Home',
-    bedrooms: '3-4 Beds',
-    currentStatus: 'Currently Vacant',
-    notes: ''
+    propertyType: 'Single-Family Home',
+    managementGoal: 'Full-Service Management',
+    notes: '',
   });
-
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setSubmitted(true);
-    }, 600);
+    setSubmitted(true);
   };
 
   return (
-    <section id="rental-analysis" className="py-24 bg-[#F4F1EA] scroll-mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        <div className="bg-[#0E1626] rounded-2xl overflow-hidden shadow-2xl border border-white/10 grid grid-cols-1 lg:grid-cols-12">
-
-          {/* Left Column: Value Pitch for Free Rental Analysis */}
-          <div className="lg:col-span-5 p-8 sm:p-12 text-white flex flex-col justify-between relative">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#C59A45]/10 rounded-full blur-3xl pointer-events-none" />
-
-            <div>
-              <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-bold text-[#E6CA85] mb-4">
-                <span>Free Landlord Service</span>
-              </div>
-
-              <h2 className="font-serif text-3xl sm:text-4xl font-semibold tracking-tight text-white leading-tight mb-4">
-                How Much Will Your Scottsdale Property Rent For?
+    <section id="consultation" className="py-20 lg:py-28 bg-[#F7F5F0] border-b border-sandstone">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* Left Column: Direct Outreach & Verified Contact (5 Cols) */}
+          <div className="lg:col-span-5 space-y-8">
+            <div className="space-y-4">
+              <span className="text-xs uppercase tracking-[0.25em] text-terracotta font-semibold font-sans">
+                Initiate Conversation
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl text-desert-charcoal font-medium leading-tight">
+                Request a Thoughtful Rental Consultation.
               </h2>
-
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-8">
-                Request a complimentary, no-obligation comprehensive rental analysis. We'll evaluate fair market rent, seasonal yield potential, and actionable recommendations to maximize net return.
+              <p className="text-charcoal-muted font-sans text-sm sm:text-base leading-relaxed">
+                Whether you own a luxury residential property in DC Ranch, an Old Town vacation home, or a multi-family portfolio, we provide honest evaluations and personalized management solutions.
               </p>
+            </div>
 
-              <div className="space-y-4 mb-8">
-                <div className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full bg-[#C59A45]/20 text-[#E6CA85] flex items-center justify-center shrink-0 mt-0.5">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
-                  </div>
-                  <div className="text-sm text-slate-300">
-                    <strong className="text-white">Comparative Market Analysis (CMA):</strong> Real-time lease rates in your exact neighborhood.
-                  </div>
+            <div className="bg-[#FAF9F6] p-6 rounded-xs border border-sandstone space-y-4">
+              <div className="font-serif text-base text-desert-charcoal font-semibold">
+                Direct Contact Information
+              </div>
+
+              <div className="flex items-start gap-3 text-xs text-charcoal-muted">
+                <MapPin className="w-4 h-4 text-terracotta flex-shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-semibold text-desert-charcoal block">Scottsdale Office</span>
+                  <span>9259 E Raintree Dr ste 2019, Scottsdale, AZ 85260</span>
                 </div>
+              </div>
 
-                <div className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full bg-[#C59A45]/20 text-[#E6CA85] flex items-center justify-center shrink-0 mt-0.5">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
-                  </div>
-                  <div className="text-sm text-slate-300">
-                    <strong className="text-white">Long-Term vs STR Comparison:</strong> Insights on whether long-term or vacation rental yields more.
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full bg-[#C59A45]/20 text-[#E6CA85] flex items-center justify-center shrink-0 mt-0.5">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
-                  </div>
-                  <div className="text-sm text-slate-300">
-                    <strong className="text-white">Rent-Ready Recommendations:</strong> Cost-effective suggestions that raise monthly rent.
-                  </div>
+              <div className="flex items-start gap-3 text-xs text-charcoal-muted">
+                <Phone className="w-4 h-4 text-desert-sage flex-shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-semibold text-desert-charcoal block">Phone Direct</span>
+                  <a href={`tel:${COMPANY_INFO.phoneRaw}`} className="text-terracotta hover:underline font-medium">
+                    (602) 935-6539
+                  </a>
                 </div>
               </div>
             </div>
 
-            {/* Quick Contact Card */}
-            <div className="pt-6 border-t border-white/10">
-              <div className="text-xs text-slate-400 mb-2">Prefer to talk directly right now?</div>
-              <a
-                href={`tel:${COMPANY_INFO.phoneRaw}`}
-                className="inline-flex items-center gap-2 text-white hover:text-[#E6CA85] font-semibold text-lg transition-colors"
-              >
-                <Phone className="w-5 h-5 text-[#C59A45]" />
-                <span>{COMPANY_INFO.phone}</span>
-              </a>
-              <div className="text-xs text-slate-400 mt-1 flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5 text-[#C59A45]" />
-                <span>9259 E Raintree Dr, Scottsdale, AZ 85260</span>
-              </div>
+            <div className="text-xs text-charcoal-muted font-sans italic border-l-2 border-desert-sage pl-3">
+              &ldquo;We reply to all property owner inquiries promptly during Arizona business hours.&rdquo;
             </div>
-
           </div>
 
-          {/* Right Column: Interactive Consultation Request Form */}
-          <div className="lg:col-span-7 bg-[#FAF9F5] p-8 sm:p-12 flex flex-col justify-center">
+          {/* Right Column: High-Conversion Property Owner Inquiry Form (7 Cols) */}
+          <div className="lg:col-span-7 bg-[#FAF9F6] p-8 sm:p-10 rounded-xs border border-sandstone shadow-md">
             {submitted ? (
-              <div className="text-center py-12 px-4 animate-in fade-in duration-300">
-                <div className="w-16 h-16 bg-[#0E1626] text-[#E6CA85] rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="py-12 text-center space-y-4 animate-fadeIn">
+                <div className="w-14 h-14 bg-desert-sage/10 text-desert-sage rounded-full flex items-center justify-center mx-auto">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h3 className="font-serif text-2xl font-bold text-[#0E1626] mb-3">
-                  Consultation Request Received
+                <h3 className="font-serif text-2xl text-desert-charcoal font-medium">
+                  Thank You, {formData.name || 'Property Owner'}.
                 </h3>
-                <p className="text-slate-600 max-w-md mx-auto text-sm leading-relaxed mb-6">
-                  Thank you, <strong className="text-[#0E1626]">{formData.fullName || 'Property Owner'}</strong>. One of our dedicated Scottsdale property managers will review comps for <span className="italic">{formData.propertyAddress || 'your property'}</span> and reach out shortly at <strong>{formData.phone || COMPANY_INFO.phone}</strong>.
+                <p className="text-sm text-charcoal-muted font-sans max-w-md mx-auto">
+                  Your inquiry regarding <strong>{formData.propertyAddress || 'your Scottsdale property'}</strong> has been received. Trevor Reeves or Braxton Heise will review comps and follow up directly.
                 </p>
-                <button
-                  onClick={() => setSubmitted(false)}
-                  className="inline-flex items-center gap-2 text-xs font-semibold text-[#0E1626] uppercase tracking-wider hover:text-[#C59A45] cursor-pointer"
-                >
-                  Submit another property inquiry
-                </button>
+                <div className="pt-4">
+                  <button
+                    onClick={() => setSubmitted(false)}
+                    className="text-xs font-semibold uppercase tracking-wider text-terracotta hover:underline font-sans"
+                  >
+                    Submit another inquiry
+                  </button>
+                </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <h3 className="font-serif text-2xl font-bold text-[#0E1626] mb-1">
-                    Request Property Consultation
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="border-b border-sandstone pb-4 mb-2">
+                  <h3 className="font-serif text-xl text-desert-charcoal font-medium">
+                    Complimentary Property Assessment
                   </h3>
-                  <p className="text-xs text-slate-600 mb-6">
-                    Fill out the form below. We will analyze your address and provide a clear, honest revenue projection.
+                  <p className="text-xs text-charcoal-muted font-sans mt-0.5">
+                    No obligation. Confidential analysis of market rent, occupancy and operating costs.
                   </p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                    <label className="text-[11px] uppercase tracking-wider font-semibold text-desert-charcoal font-sans block mb-1">
                       Your Full Name *
                     </label>
                     <input
                       type="text"
                       required
-                      placeholder="Jane Doe"
-                      value={formData.fullName}
-                      onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                      className="w-full bg-white border border-[#D5CFBF] rounded-md px-3.5 py-2.5 text-sm text-[#0E1626] focus:outline-none focus:border-[#C59A45] focus:ring-1 focus:ring-[#C59A45]"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      placeholder="e.g. Jonathan Vance"
+                      className="w-full bg-sandstone-light border border-sandstone rounded-xs py-2.5 px-3 text-xs font-sans text-desert-charcoal focus:outline-none focus:border-terracotta"
                     />
                   </div>
-
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                    <label className="text-[11px] uppercase tracking-wider font-semibold text-desert-charcoal font-sans block mb-1">
                       Phone Number *
                     </label>
                     <input
                       type="tel"
                       required
-                      placeholder="(602) 555-0199"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full bg-white border border-[#D5CFBF] rounded-md px-3.5 py-2.5 text-sm text-[#0E1626] focus:outline-none focus:border-[#C59A45] focus:ring-1 focus:ring-[#C59A45]"
+                      placeholder="(602) 000-0000"
+                      className="w-full bg-sandstone-light border border-sandstone rounded-xs py-2.5 px-3 text-xs font-sans text-desert-charcoal focus:outline-none focus:border-terracotta"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                    <label className="text-[11px] uppercase tracking-wider font-semibold text-desert-charcoal font-sans block mb-1">
                       Email Address *
                     </label>
                     <input
                       type="email"
                       required
-                      placeholder="owner@example.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-white border border-[#D5CFBF] rounded-md px-3.5 py-2.5 text-sm text-[#0E1626] focus:outline-none focus:border-[#C59A45] focus:ring-1 focus:ring-[#C59A45]"
+                      placeholder="owner@domain.com"
+                      className="w-full bg-sandstone-light border border-sandstone rounded-xs py-2.5 px-3 text-xs font-sans text-desert-charcoal focus:outline-none focus:border-terracotta"
                     />
                   </div>
-
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-                      Property Address or Area *
+                    <label className="text-[11px] uppercase tracking-wider font-semibold text-desert-charcoal font-sans block mb-1">
+                      Property Address / Zip Code
                     </label>
                     <input
                       type="text"
-                      required
-                      placeholder="e.g. 85255 North Scottsdale"
                       value={formData.propertyAddress}
                       onChange={(e) => setFormData({ ...formData, propertyAddress: e.target.value })}
-                      className="w-full bg-white border border-[#D5CFBF] rounded-md px-3.5 py-2.5 text-sm text-[#0E1626] focus:outline-none focus:border-[#C59A45] focus:ring-1 focus:ring-[#C59A45]"
+                      placeholder="e.g. 85255 North Scottsdale"
+                      className="w-full bg-sandstone-light border border-sandstone rounded-xs py-2.5 px-3 text-xs font-sans text-desert-charcoal focus:outline-none focus:border-terracotta"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-                      Management Type
+                    <label className="text-[11px] uppercase tracking-wider font-semibold text-desert-charcoal font-sans block mb-1">
+                      Asset Classification
                     </label>
                     <select
                       value={formData.propertyType}
                       onChange={(e) => setFormData({ ...formData, propertyType: e.target.value })}
-                      className="w-full bg-white border border-[#D5CFBF] rounded-md px-3.5 py-2.5 text-sm text-[#0E1626] focus:outline-none focus:border-[#C59A45]"
+                      className="w-full bg-sandstone-light border border-sandstone rounded-xs py-2.5 px-3 text-xs font-sans text-desert-charcoal focus:outline-none focus:border-terracotta"
                     >
-                      <option value="Single-Family Home">Single-Family Long-Term</option>
-                      <option value="Vacation Rental (Airbnb/Vrbo)">Vacation Rental (Airbnb / Vrbo)</option>
-                      <option value="Multi-Family Property">Multi-Family / Units</option>
-                      <option value="Landscaping & Maintenance">Irrigation & Maintenance Only</option>
+                      <option value="Single-Family Home">Single-Family Home</option>
+                      <option value="Short-Term Vacation Rental (Airbnb/Vrbo)">Short-Term Vacation Rental (Airbnb/Vrbo)</option>
+                      <option value="Multi-Family Property">Multi-Family / Multi-Unit</option>
+                      <option value="Luxury Estate (Paradise Valley / DC Ranch)">Luxury Estate</option>
                     </select>
                   </div>
-
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-                      Current Property Status
+                    <label className="text-[11px] uppercase tracking-wider font-semibold text-desert-charcoal font-sans block mb-1">
+                      Primary Objective
                     </label>
                     <select
-                      value={formData.currentStatus}
-                      onChange={(e) => setFormData({ ...formData, currentStatus: e.target.value })}
-                      className="w-full bg-white border border-[#D5CFBF] rounded-md px-3.5 py-2.5 text-sm text-[#0E1626] focus:outline-none focus:border-[#C59A45]"
+                      value={formData.managementGoal}
+                      onChange={(e) => setFormData({ ...formData, managementGoal: e.target.value })}
+                      className="w-full bg-sandstone-light border border-sandstone rounded-xs py-2.5 px-3 text-xs font-sans text-desert-charcoal focus:outline-none focus:border-terracotta"
                     >
-                      <option value="Currently Vacant">Currently Vacant</option>
-                      <option value="Currently Tenant Occupied">Currently Tenant Occupied</option>
-                      <option value="Currently Self-Managing">Currently Self-Managing</option>
-                      <option value="Under Contract / Buying">Under Contract / In Escrow</option>
-                      <option value="Switching Property Managers">Switching From Another PM</option>
+                      <option value="Full-Service Management">Full-Service Management</option>
+                      <option value="Switching From Another Management Co.">Switching From Another Firm</option>
+                      <option value="New Rental Purchase Assessment">Purchasing a New Rental</option>
+                      <option value="STR Conversion Feasibility">STR Feasibility Study</option>
                     </select>
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-                    Questions or Specific Goals
+                  <label className="text-[11px] uppercase tracking-wider font-semibold text-desert-charcoal font-sans block mb-1">
+                    Specific Questions or Current Rent Details
                   </label>
                   <textarea
-                    rows={2}
-                    placeholder="Tell us about your expectations, timeline, or current challenges..."
+                    rows={3}
                     value={formData.notes}
                     onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                    className="w-full bg-white border border-[#D5CFBF] rounded-md px-3.5 py-2 text-sm text-[#0E1626] focus:outline-none focus:border-[#C59A45]"
-                  />
+                    placeholder="Tell us about your property condition, current lease terms, or management concerns..."
+                    className="w-full bg-sandstone-light border border-sandstone rounded-xs py-2.5 px-3 text-xs font-sans text-desert-charcoal focus:outline-none focus:border-terracotta resize-none"
+                  ></textarea>
                 </div>
 
                 <button
                   type="submit"
-                  disabled={loading}
-                  className="w-full bg-[#0E1626] hover:bg-[#1A2642] text-white font-bold py-3.5 px-6 rounded-md shadow-lg transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer mt-2"
+                  className="w-full bg-desert-charcoal hover:bg-terracotta text-sandstone py-4 rounded-xs text-xs font-medium tracking-wider uppercase transition-editorial flex items-center justify-center gap-2 shadow-sm font-sans"
                 >
-                  {loading ? (
-                    <span>Preparing Analysis...</span>
-                  ) : (
-                    <>
-                      <span>Get My Free Rental Report & Consultation</span>
-                      <Send className="w-4 h-4 text-[#C59A45]" />
-                    </>
-                  )}
+                  <Send className="w-3.5 h-3.5" />
+                  <span>Request Owner Consultation &amp; Analysis</span>
                 </button>
-
-                <div className="text-[11px] text-slate-500 text-center pt-2">
-                  🔒 Strictly confidential. We respect your privacy and never sell or share owner information.
-                </div>
               </form>
             )}
           </div>
-
         </div>
-
       </div>
     </section>
   );

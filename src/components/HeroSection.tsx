@@ -1,65 +1,86 @@
-import { ArrowRight, Phone, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Phone, CheckCircle2, Shield } from 'lucide-react';
 import { COMPANY_INFO } from '../data/content';
+import { HeroAddressBar } from './HeroAddressBar';
 
 interface HeroSectionProps {
   onRequestConsultation: () => void;
   onExploreTracks: () => void;
+  onAddressAnalyze?: (address: string, propertyType: string) => void;
 }
 
 export const HeroSection = ({
   onRequestConsultation,
   onExploreTracks,
+  onAddressAnalyze,
 }: HeroSectionProps) => {
+  const handleAddressSubmit = (address: string, propertyType: string) => {
+    if (onAddressAnalyze) {
+      onAddressAnalyze(address, propertyType);
+    } else {
+      onRequestConsultation();
+    }
+  };
+
   return (
-    <section className="relative bg-[#F7F5F0] pt-8 pb-16 lg:pt-16 lg:pb-28 overflow-hidden border-b border-sandstone">
+    <section className="relative bg-[#FAF8F5] pt-8 pb-16 lg:pt-14 lg:pb-24 overflow-hidden border-b border-sandstone">
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
-        {/* Editorial Top Eyebrow */}
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-sandstone/80 pb-6 mb-10">
-          <div className="flex items-center gap-2">
+        {/* Editorial Top Eyebrow with Monospaced Refinement */}
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-sandstone/80 pb-5 mb-10 text-xs">
+          <div className="flex items-center gap-3">
             <span className="w-2 h-2 rounded-full bg-terracotta inline-block"></span>
-            <span className="text-xs uppercase tracking-[0.25em] font-sans font-semibold text-desert-charcoal">
+            <span className="uppercase tracking-[0.25em] font-sans font-semibold text-desert-charcoal">
               Scottsdale &bull; Paradise Valley &bull; Sonoran Modern Management
             </span>
           </div>
-          <div className="text-xs text-charcoal-muted font-sans hidden sm:block">
-            Specializing in Long-Term Residences &amp; High-Yield Vacation Rentals
+          <div className="flex items-center gap-4 text-charcoal-muted font-sans hidden sm:flex text-[11px]">
+            <span className="flex items-center gap-1.5">
+              <Shield className="w-3.5 h-3.5 text-desert-sage" />
+              <span>Maricopa County Licensed &bull; ARMLS</span>
+            </span>
+            <span className="h-3 w-[1px] bg-sandstone"></span>
+            <span>9259 E Raintree Dr &middot; Ste 2019</span>
           </div>
         </div>
 
         {/* Asymmetrical Editorial Hero Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Left Column: Bold Typography & Conversion Strategy (7 Cols) */}
-          <div className="lg:col-span-7 space-y-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+          {/* Left Column: Bold Editorial Typography & Belong-style High Intent Calculator (7 Cols) */}
+          <div className="lg:col-span-7 space-y-7">
             <div className="space-y-4">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sandstone text-desert-charcoal text-xs font-medium">
                 <span className="text-desert-sage font-bold">&bull;</span>
                 <span>By Property Owners, For Property Owners</span>
               </div>
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-desert-charcoal leading-[1.12] tracking-tight font-medium">
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-desert-charcoal leading-[1.10] tracking-tight font-medium">
                 Property ownership. <br />
                 <span className="italic font-normal text-terracotta">Managed with intention.</span>
               </h1>
             </div>
 
             <p className="text-base sm:text-lg text-charcoal-muted leading-relaxed font-sans max-w-xl">
-              From long-term residences to Scottsdale vacation homes, we take a hands-on approach to protecting and managing your investment.
+              From long-term residences to high-yield Scottsdale vacation homes, we steward your capital with owner-level care, in-house maintenance, and complete financial transparency.
             </p>
 
-            {/* Editorial CTAs */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+            {/* High-Converting Address Evaluation Search Bar */}
+            <div className="pt-1">
+              <HeroAddressBar onAnalyze={handleAddressSubmit} />
+            </div>
+
+            {/* Editorial Quick Actions */}
+            <div className="flex flex-wrap items-center gap-4 pt-1">
               <button
                 onClick={onRequestConsultation}
-                className="bg-desert-charcoal hover:bg-terracotta text-sandstone px-8 py-4 rounded-xs text-sm font-medium tracking-wider uppercase transition-editorial flex items-center justify-center gap-3 shadow-md group"
+                className="bg-desert-charcoal hover:bg-terracotta text-sandstone px-7 py-3.5 rounded-xs text-xs font-semibold tracking-wider uppercase transition-editorial flex items-center justify-center gap-2.5 shadow-md group"
               >
                 <span>Request a Consultation</span>
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
               </button>
 
               <button
                 onClick={onExploreTracks}
-                className="bg-transparent hover:bg-sandstone text-desert-charcoal border border-desert-charcoal/40 hover:border-desert-charcoal px-7 py-4 rounded-xs text-sm font-medium tracking-wider uppercase transition-editorial text-center"
+                className="bg-transparent hover:bg-sandstone text-desert-charcoal border border-desert-charcoal/40 hover:border-desert-charcoal px-6 py-3.5 rounded-xs text-xs font-semibold tracking-wider uppercase transition-editorial text-center"
               >
-                Explore Two Management Tracks
+                Compare Two Tracks (LTR &amp; STR)
               </button>
             </div>
 
@@ -68,22 +89,22 @@ export const HeroSection = ({
               <div className="flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-desert-sage flex-shrink-0 mt-0.5" />
                 <div>
-                  <span className="font-semibold text-desert-charcoal block">Owner-Run Team</span>
+                  <span className="font-semibold text-desert-charcoal block">Owner-Run Leadership</span>
                   <span className="text-charcoal-muted">We own rental properties in the Valley ourselves</span>
                 </div>
               </div>
               <div className="flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-desert-sage flex-shrink-0 mt-0.5" />
                 <div>
-                  <span className="font-semibold text-desert-charcoal block">In-House Operations</span>
+                  <span className="font-semibold text-desert-charcoal block">In-House Field Ops</span>
                   <span className="text-charcoal-muted">Dedicated maintenance &amp; desert irrigation</span>
                 </div>
               </div>
               <div className="flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-desert-sage flex-shrink-0 mt-0.5" />
                 <div>
-                  <span className="font-semibold text-desert-charcoal block">Real-Time Portals</span>
-                  <span className="text-charcoal-muted">Propertyware owner access with complete P&amp;L</span>
+                  <span className="font-semibold text-desert-charcoal block">Direct Disbursements</span>
+                  <span className="text-charcoal-muted">Propertyware live ledger with 100% receipt backup</span>
                 </div>
               </div>
             </div>

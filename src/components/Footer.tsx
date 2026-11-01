@@ -102,7 +102,7 @@ export const Footer = () => {
         {/* Bottom Disclaimer & Copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#787D85] font-sans">
           <div>
-            &copy; {new Date().getFullYear()} Scottsdale Property Management / AZ Prop Group. Concept by Lumina Forge.
+            &copy; 2026 Scottsdale Property Management / AZ Prop Group. Concept by Lumina Forge.
           </div>
           <div className="flex items-center gap-6">
             <span>Equal Housing Opportunity</span>

@@ -4,13 +4,15 @@
   :root {
     --font-serif: 'Playfair Display', Georgia, serif;
     --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
   }
 
   body {
-    background-color: #F7F5F0;
-    color: #1C1E21;
+    background-color: #FAF8F5;
+    color: #181A1D;
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 }
 
@@ -24,15 +26,27 @@
 
 /* Sonoran Modern Color Palette tokens */
 .bg-limestone {
-  background-color: #F7F5F0;
+  background-color: #FAF8F5;
+}
+
+.text-limestone {
+  color: #FAF8F5;
 }
 
 .bg-sandstone {
   background-color: #EBE5DA;
 }
 
+.text-sandstone {
+  color: #FAF8F5 !important;
+}
+
 .bg-sandstone-light {
   background-color: #F2ECE1;
+}
+
+.text-sandstone-light {
+  color: #F2ECE1;
 }
 
 .bg-desert-charcoal {
@@ -101,4 +115,33 @@
 /* Deliberate refined transitions */
 .transition-editorial {
   transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Luxury hairline borders reminiscent of Boundless Management & Architectural Digest */
+.border-hairline {
+  border-width: 1px;
+  border-color: rgba(224, 216, 203, 0.85);
+}
+
+.border-hairline-dark {
+  border-width: 1px;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Glassmorphism & subtle Sonoran glow */
+.glass-editorial {
+  background: rgba(250, 248, 245, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-dark {
+  background: rgba(18, 36, 29, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* Interactive range styling */
+input[type=range] {
+  accent-color: #C06C47;
 }

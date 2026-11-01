@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { X, CheckCircle2, ArrowRight } from 'lucide-react';
 import { COMPANY_INFO } from '../data/content';
 
@@ -18,13 +18,7 @@ export const ConsultationModal = ({
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
-  const [propertyType, setPropertyType] = useState('Single-Family Long-Term');
-
-  useEffect(() => {
-    if (prefilledEstimate) {
-      setPropertyType(prefilledEstimate.type);
-    }
-  }, [prefilledEstimate]);
+  const [propertyType, setPropertyType] = useState(() => prefilledEstimate?.type || 'Single-Family Long-Term');
 
   if (!isOpen) return null;
 

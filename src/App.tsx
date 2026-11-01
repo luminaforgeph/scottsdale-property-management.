@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
+import { TypographicStatRibbon } from './components/TypographicStatRibbon';
 import { PhilosophySection } from './components/PhilosophySection';
 import { TwoManagementTracksSection } from './components/TwoManagementTracksSection';
+import { ComparisonMatrixSection } from './components/ComparisonMatrixSection';
+import { InteractiveLifecycleSection } from './components/InteractiveLifecycleSection';
 import { OperationalCapabilitiesSection } from './components/OperationalCapabilitiesSection';
 import { TechOwnerExperienceSection } from './components/TechOwnerExperienceSection';
 import { TeamSection } from './components/TeamSection';
@@ -26,49 +29,70 @@ export function App() {
     setModalOpen(true);
   };
 
+  const handleHeroAddressAnalyze = (address: string, propertyType: string) => {
+    // Scrolls to calculator and pre-sets an estimate or opens modal
+    const calcEl = document.getElementById('calculator');
+    if (calcEl) {
+      calcEl.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      setEstimateData({ rent: 3800, type: propertyType, area: address });
+      setModalOpen(true);
+    }
+  };
+
   const scrollToTracks = () => {
     const el = document.getElementById('management-tracks');
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <div className="min-h-screen bg-[#F7F5F0] text-[#181A1D] selection:bg-terracotta selection:text-white flex flex-col font-sans">
+    <div className="min-h-screen bg-[#FAF8F5] text-[#181A1D] selection:bg-terracotta selection:text-white flex flex-col font-sans">
       {/* 1. Sonoran Modern Sticky Header */}
       <Navbar onRequestConsultation={handleOpenConsultation} />
 
       <main className="flex-grow">
-        {/* 2. Hero Section: Editorial Asymmetry & Intentional Positioning */}
+        {/* 2. Hero Section: Editorial Asymmetry & High-Intent Address Search */}
         <HeroSection
           onRequestConsultation={handleOpenConsultation}
           onExploreTracks={scrollToTracks}
+          onAddressAnalyze={handleHeroAddressAnalyze}
         />
 
-        {/* 3. Section A: The SPM Philosophy (We Think Like Landlords) */}
+        {/* 3. Urban Group-Inspired Typographic Stat & Credibility Ribbon */}
+        <TypographicStatRibbon />
+
+        {/* 4. Section A: The SPM Philosophy (We Think Like Landlords) */}
         <PhilosophySection onRequestConsultation={handleOpenConsultation} />
 
-        {/* 4. Section B: Two Ways to Manage Property (LTR vs Vacation Rentals / STR) */}
+        {/* 5. Section B: Two Ways to Manage Property (LTR vs Vacation Rentals / STR) */}
         <TwoManagementTracksSection onRequestConsultation={handleOpenConsultation} />
 
-        {/* 5. Section C: Beyond Rent Collection (Maintenance, Landscaping & Irrigation) */}
+        {/* 6. Section C: Belong-Inspired Objective Comparison Matrix (Self vs Volume vs SPM) */}
+        <ComparisonMatrixSection onRequestConsultation={handleOpenConsultation} />
+
+        {/* 7. Section D: Interactive 4-Step Management Lifecycle */}
+        <InteractiveLifecycleSection onRequestConsultation={handleOpenConsultation} />
+
+        {/* 8. Section E: Beyond Rent Collection (Maintenance, Landscaping & Irrigation) */}
         <OperationalCapabilitiesSection onRequestConsultation={handleOpenConsultation} />
 
-        {/* 6. Section D: A More Informed Ownership Experience (Technology & Portals) */}
+        {/* 9. Section F: A More Informed Ownership Experience (Technology & Portals) */}
         <TechOwnerExperienceSection onRequestConsultation={handleOpenConsultation} />
 
-        {/* 7. Section E: Meet the People Behind the Management (Verified Leadership & Staff) */}
+        {/* 10. Section G: Meet the People Behind the Management (Verified Leadership & Staff) */}
         <TeamSection onRequestConsultation={handleOpenConsultation} />
 
-        {/* 8. Section F: Rental Assessment & Interactive Scottsdale Yield Estimator */}
+        {/* 11. Section H: Rental Assessment & Interactive Scottsdale Yield Estimator */}
         <QuickRentalCalculator onOpenConsultationWithEstimate={handleOpenConsultationWithEstimate} />
 
-        {/* 9. Section G: Genuine Testimonials (Verified Client Quotations) */}
+        {/* 12. Section I: Genuine Testimonials (Verified Client Quotations) */}
         <GenuineTestimonialsSection />
 
-        {/* 10. Consultation Inquiry Form */}
+        {/* 13. Consultation Inquiry Form */}
         <ConsultationCTASection />
       </main>
 
-      {/* 11. Sonoran Modern Professional Footer */}
+      {/* 14. Sonoran Modern Professional Footer */}
       <Footer />
 
       {/* Interactive Modal */}

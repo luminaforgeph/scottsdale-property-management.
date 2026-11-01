@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+/* Custom warm luxury utility classes */
+.bg-warm-ivory {
+  background-color: #FAF9F5;
+}
+
+.bg-warm-sand {
+  background-color: #F3EFE6;
+}
+
+.bg-deep-navy {
+  background-color: #0E1626;
+}
+
+.bg-charcoal {
+  background-color: #172033;
+}
+
+.text-gold-accent {
+  color: #C59A45;
+}
+
+.bg-gold-accent {
+  background-color: #C59A45;
+}
+
+.border-gold-accent {
+  border-color: #C59A45;
+}
+
+/* Subtle smooth gradient for hero overlay */
+.hero-gradient {
+  background: linear-gradient(180deg, rgba(14, 22, 38, 0.78) 0%, rgba(14, 22, 38, 0.88) 100%);
+}
+
+.card-hover-effect {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 30px -10px rgba(14, 22, 38, 0.08);
+}
